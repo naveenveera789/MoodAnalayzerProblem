@@ -8,11 +8,11 @@ namespace MoodAnalyzerProblem
         {
             if(message.Contains("Sad"))
             {
-                return "Sad";
+                return "SAD";
             }
             else
             {
-                return "Happy";
+                return "HAPPY";
             }
         }
     }
