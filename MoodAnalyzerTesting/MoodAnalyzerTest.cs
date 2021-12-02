@@ -51,7 +51,7 @@ namespace MoodAnalyzerTesting
             }
         }
         [Test]
-        public void GivenEMPTYMood_WhenAnalyze_ShouldThrowInvalidMoodException()
+        public void GivenEmptyMood_WhenAnalyze_ShouldThrowInvalidMoodException()
         {
             try
             {
@@ -62,6 +62,39 @@ namespace MoodAnalyzerTesting
             catch (MoodAnalyzerException e)
             {
                 Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
+        }
+        [Test]
+        public void GivenMoodAnalyzerClassName_ShouldReturnMoodAnalyzerObject()
+        {
+            object output = new MoodAnalyzer();
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
+            output.Equals(obj);
+        }
+        [Test]
+        public void GivenClassName_WhenImproper_ShouldThrowMoodAnalyzerException()
+        {
+            string output = "Class not found";
+            try
+            {
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyzing", "MoodAnalyzing");
+            }
+            catch(MoodAnalyzerException e)
+            {
+                Assert.AreEqual(output, e.Message);
+            }
+        }
+        [Test]
+        public void GivenClass_WhenConstructorNotProper_ShouldThrowMoodAnalyzerException()
+        {
+            string output = "Constructor not found";
+            try
+            {
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzing");
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual(output, e.Message);
             }
         }
     }
